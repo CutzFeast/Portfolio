@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUTZ FEAST | Graphic & Web Designer</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .fluid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .fluid-bg::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 10% 10%, #00ffff55, transparent 30%),
+                  radial-gradient(circle at 90% 30%, #ff00ff33, transparent 30%),
+                  radial-gradient(circle at 50% 90%, #00ffff44, transparent 40%);
+      animation: animateFluid 20s linear infinite;
+      opacity: 0.1;
+    }
+
+    @keyframes animateFluid {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(-25%, -25%); }
+      100% { transform: translate(0, 0); }
+    }
+
+    header {
+      position: relative;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #000;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #00ffff;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00ffff;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #ff00ff;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      color: #ccc;
+    }
+
+    .btn {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      background: transparent;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00ffff90;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    }
+
+    .section {
+      padding: 5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #00ffff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: #111;
+      border: 1px solid #00ffff99;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ffff66;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 40px #00ffffaa, 0 0 60px #ff00ffaa;
+    }
+
+    .project-card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 20px; height: 20px;
+      border: 2px solid #00ffff;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+
+    .trail {
+      position: fixed;
+      width: 6px; height: 6px;
+      background: #00ffff;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      mix-blend-mode: difference;
+      animation: fadeOut 0.8s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="fluid-bg"></div>
+  <div class="cursor" id="cursor"></div>
+
+  <header>
+    <h1>CUTZ FEAST</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Designing Tomorrow, Today</h2>
+    <p>I'm a futuristic graphic & web designer crafting bold digital experiences for visionary brands.</p>
+    <a href="#work" class="btn">Explore My Work</a>
+  </section>
+
+  <section class="section" id="about">
+    <h3>About Me</h3>
+    <p style="max-width: 700px; margin: 0 auto; text-align: center; color: #ccc;">I’m a multidisciplinary designer with a passion for minimal, high-impact aesthetics. From brand identity to digital design, I create sleek experiences that turn heads.</p>
+  </section>
+
+  <section class="section" id="work">
+    <h3>Featured Work</h3>
+    <div class="projects">
+      <div class="project-card">
+        <img src="https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/project_item/attachment/61a78bc72185eeb62176cf6faf9e9b93-1718361874120/DIABLO-3D-MOCKUP.png" alt="DIABLO Packaging">
+        <h4 style="color:#00ffff;">Funky Packaging – DIABLO</h4>
+        <p>Bright, punchy packaging with neon 3D mockup flair.</p>
+      </div>
+      <div class="project-card">
+        <img src="https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/project_item/attachment/3c5d49d2c73839ced4c326461f9e0ea4-1718370967590/11.png" alt="Logo Design">
+        <h4 style="color:#00ffff;">Logo Design – CUTZ FEAST</h4>
+        <p>Sharp, high-energy branding with futuristic tones.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <h3>Contact Me</h3>
+    <p>Email: <a href="mailto:hello@cutzfeast.com" style="color:#00ffff">hello@cutzfeast.com</a></p>
+    <p>Instagram: <a href="https://instagram.com/cutzfeast" style="color:#00ffff" target="_blank">@cutzfeast</a></p>
+  </section>
+
+  <footer class="footer">
+    &copy; 2025 CUTZ FEAST — All rights reserved.
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.top = `${e.clientY}px`;
+      cursor.style.left = `${e.clientX}px`;
+
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+      trail.style.top = `${e.clientY}px`;
+      trail.style.left = `${e.clientX}px`;
+      document.body.appendChild(trail);
+
+      setTimeout(() => trail.remove(), 800);
+    });
+  </script>
+</body>
+</html>
